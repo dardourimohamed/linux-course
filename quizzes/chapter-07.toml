@@ -1,0 +1,159 @@
+# Chapter 7 Quiz: Permissions & Users
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What do the permissions `rwxr-xr--` represent in numeric form?"
+prompt.distractors = [
+  "755",
+  "644",
+  "777",
+]
+answer.answer = "754"
+context = """
+Permissions are calculated by summing: r=4, w=2, x=1. User (rwx=7), Group (r-x=5), Others (r--=4). So `rwxr-xr--` equals 754. Common values: 644 (rw-r--r--), 755 (rwxr-xr-x), 600 (rw-------).
+"""
+id = "c07-q1-permissions-calc"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `chmod 644 file.txt` do?"
+prompt.distractors = [
+  "Makes the file executable by everyone",
+  "Gives full read/write/execute to owner only",
+  "Gives write permission to everyone",
+]
+answer.answer = "Owner can read/write; group and others can only read"
+context = """
+644 = rw-r--r--. Owner (6=4+2) can read and write. Group (4) can read. Others (4) can read. This is the standard permission for files that should be readable by all but writable only by the owner.
+"""
+id = "c07-q2-chmod-644"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the CORRECT command to add a user to a group?"
+prompt.distractors = [
+  "usermod -G group username",
+  "useradd -g group username",
+  "chgrp group username",
+]
+answer.answer = "usermod -aG group username"
+context = """
+`usermod -aG group username` adds a user to a group. The `-a` flag is CRITICAL — it appends to existing groups. Without `-a`, it REPLACES all the user's groups with just the one specified.
+"""
+id = "c07-q3-usermod-ag"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the SUID permission do?"
+prompt.distractors = [
+  "Makes files editable by anyone",
+  "Keeps files from being deleted",
+  "Hides files from directory listings",
+]
+answer.answer = "Allows a file to be executed with the permissions of its owner"
+context = """
+SUID (Set User ID, represented by an `s` in user execute position) allows a file to run with the owner's permissions, not the runner's. Example: `passwd` command needs SUID root to modify /etc/shadow.
+"""
+id = "c07-q4-suid"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `sudo -i` do compared to plain `sudo`?"
+prompt.distractors = [
+  "Shows sudo version information",
+  "Runs the command as a specific user",
+  "Invalidates sudo credentials",
+]
+answer.answer = "Starts an interactive root shell"
+context = """
+`sudo -i` (or `sudo -s`) gives you a root shell where you can run multiple commands without typing sudo each time. Plain `sudo` runs a single command with elevated privileges.
+"""
+id = "c07-q5-sudo-i"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does a umask of 022 result in for new file permissions?"
+prompt.distractors = [
+  "777 (rwxrwxrwx)",
+  "600 (rw-------)",
+  "700 (rwx------)",
+]
+answer.answer = "644 (rw-r--r--)"
+context = """
+umask subtracts from default permissions. Files default to 666, directories to 777. umask 022 subtracts write for group (2) and others (2): 666-022=644 for files, 777-022=755 for directories.
+"""
+id = "c07-q6-umask"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the sticky bit do on a directory?"
+prompt.distractors = [
+  "Prevents anyone from deleting files in the directory",
+  "Makes all files in the directory executable",
+  "Forces all new files to be owned by root",
+]
+answer.answer = "Only the file owner can delete their files (even if others have write permission)"
+context = """
+The sticky bit (represented by a `t` in others execute) ensures that only the owner of a file can delete it, even if others have write permission on the directory. Common on `/tmp` so users can't delete each other's files.
+"""
+id = "c07-q7-sticky-bit"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What command changes file ownership?"
+prompt.distractors = [
+  "chmod",
+  "usermod",
+  "grpmod",
+]
+answer.answer = "chown"
+context = """
+`chown` changes owner and optionally group: `chown user:group file` or `chown user file`. `chgrp` changes only the group. Both require sudo to change ownership to another user.
+"""
+id = "c07-q8-chown"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `chmod +x script.sh` do?"
+prompt.distractors = [
+  "Removes execute permission",
+  "Adds read permission for everyone",
+  "Makes the script readable by the owner",
+]
+answer.answer = "Adds execute permission for user, group, and others"
+context = """
+`chmod +x` adds execute permission to all three classes (user, group, others). This is the shorthand way to make a script executable. Without the class prefix (u/g/o/a), it applies to all.
+"""
+id = "c07-q9-chmod-x"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does symbolic permission notation `go-w` mean?"
+prompt.distractors = [
+  "Add write permission to group and others",
+  "Add write permission and make executable",
+  "Remove read permission from owner",
+]
+answer.answer = "Remove write permission from group and others"
+context = """
+Symbolic notation: `u`=user, `g`=group, `o`=others, `a`=all. `+` adds, `-` removes, `=` sets exactly. `go-w` removes write permission from group and others. `u+x` adds execute for user.
+"""
+id = "c07-q10-symbolic-perm"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command displays the groups you belong to?"
+answer.answer = "groups"
+context = """
+`groups` shows all groups your user is a member of. You can also check `id` for more detailed info including your uid, gid, and all group memberships.
+"""
+id = "c07-sa1-groups"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What permission numeric value gives ONLY the owner full access (rwx) and no permissions to anyone else?"
+answer.answer = "700"
+context = """
+700 = rwx------ gives the owner full read, write, execute permissions, and group and others have no permissions at all. Commonly used for personal directories and sensitive files.
+"""
+id = "c07-sa2-700"

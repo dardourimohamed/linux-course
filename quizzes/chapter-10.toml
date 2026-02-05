@@ -1,0 +1,159 @@
+# Chapter 10 Quiz: Shell Scripting
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the purpose of the shebang line `#!/bin/bash` at the top of a script?"
+prompt.distractors = [
+  "It adds a comment explaining the script",
+  "It tells the script to run in the background",
+  "It defines script variables",
+]
+answer.answer = "It specifies which interpreter should execute the script"
+context = """
+The shebang `#!` tells the system which program to use to run the script. `#!/bin/bash` means 'run this with bash'. `#!/usr/bin/env python3` would run it with Python 3. Without this, scripts may not execute correctly.
+"""
+id = "c10-q1-shebang"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `$var` and `${var}`?"
+prompt.distractors = [
+  "${var} is for numbers, $var is for strings",
+  "${var} works in single quotes, $var doesn't",
+  "There is no functional difference",
+]
+answer.answer = "${var} is clearer when the variable name is adjacent to other text"
+context = """
+Both work, but braces are required for clarity: `${var}_file` vs `$var_file` (which looks for variable named `var_file`). Use braces when variable names border other text.
+"""
+id = "c10-q2-var-braces"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `$?` contain in a bash script?"
+prompt.distractors = [
+  "The script's name",
+  "The number of arguments passed",
+  "The last command's output",
+]
+answer.answer = "The exit status of the last command (0 for success)"
+context = """
+`$?` holds the exit code of the previous command. 0 means success, non-zero means failure. Useful for error handling: `command || echo 'Failed with code $?'`
+"""
+id = "c10-q3-exit-status"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `-eq` and `=` in bash conditionals?"
+prompt.distractors = [
+  "-eq checks if strings are equal, = checks if numbers are equal",
+  "There is no difference - they are interchangeable",
+  "-eq is for greater than, = is for equals",
+]
+answer.answer = "-eq compares numbers; = compares strings"
+context = """
+In bash `[ ]` tests: `-eq`, `-gt`, `-lt` compare NUMBERS. `=`, `!=` compare STRINGS. Mixing them causes bugs. `if [ 5 -eq 5 ]` works; `if [ 5 = 5 ]` may give unexpected results.
+"""
+id = "c10-q4-eq-vs-equals"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `$((a + b))` do?"
+prompt.distractors = [
+  "Creates a subshell that runs in the background",
+  "Checks if a equals b",
+  "Defines a new function",
+]
+answer.answer = "Performs arithmetic expansion (adds a and b)"
+context = """
+`$(( ))` is arithmetic expansion in bash. It evaluates mathematical expressions: `$((a + b))`, `$((a * 2))`, `$((a++))`. This is how you do math in bash scripts.
+"""
+id = "c10-q5-arithmetic"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `read -p 'Enter name: ' name` do?"
+prompt.distractors = [
+  "Reads a file named 'name'",
+  "Displays 'Enter name: ' without waiting for input",
+  "Sets the variable 'name' to a default value",
+]
+answer.answer = "Displays a prompt and reads user input into the variable 'name'"
+context = """
+`read` captures user input. `-p 'text'` displays a prompt first. The input is stored in the named variable. Use `-s` for silent input (like passwords).
+"""
+id = "c10-q6-read-prompt"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `[ -f file.txt ]` test?"
+prompt.distractors = [
+  "If file.txt is larger than zero bytes",
+  "If file.txt is a directory",
+  "If file.txt is executable",
+]
+answer.answer = "If file.txt exists and is a regular file"
+context = """
+`-f` tests if a path exists AND is a regular file (not a directory). Use `-d` for directories, `-e` for existence (any type), `-r` for readability, `-x` for executability.
+"""
+id = "c10-q7-file-test"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `for i in {1..10}; do ... done` do?"
+prompt.distractors = [
+  "Loops from 10 down to 1",
+  "Loops through files named 1 through 10",
+  "Runs the loop exactly 11 times",
+]
+answer.answer = "Loops with i taking values 1, 2, 3, ..., 10"
+context = """
+Brace expansion `{1..10}` generates sequences. `for i in {1..10}` sets i to each value from 1 to 10. You can also do `{a..z}`, `{01..10}` (zero-padded), and `{1,3,5}` for specific values.
+"""
+id = "c10-q8-brace-loop"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `$@` and `$*`?"
+prompt.distractors = [
+  "$@ contains only the first argument, $* contains all",
+  "$@ is for numbers, $* is for strings",
+  "They always produce the same result",
+]
+answer.answer = "$@ preserves argument boundaries; $* merges all arguments into one"
+context = """
+`$@` treats each argument as separate quoted string. `$*` merges all arguments into a single string. Usually `$@` is what you want: `for arg in '$@'` vs `for arg in '$*'`.
+"""
+id = "c10-q9-at-vs-star"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `$(command)` do?"
+prompt.distractors = [
+  "Runs command in the background",
+  "Checks if command succeeded",
+  "Comments out the command",
+]
+answer.answer = "Captures the output of command for use in the script"
+context = """
+`$(command)` is command substitution. It runs the command and captures its stdout. Example: `files=$(ls)` stores the directory listing in the `files` variable. The older syntax uses backticks.
+"""
+id = "c10-q10-command-sub"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command makes a script file executable?"
+answer.answer = "chmod +x"
+context = """
+`chmod +x script.sh` makes a script executable. Without execute permissions, you must run it with `bash script.sh` instead of `./script.sh`. The +x adds execute permission for user, group, and others.
+"""
+id = "c10-sa1-chmod-x"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What special variable contains the number of arguments passed to a script?"
+answer.answer = "$#"
+context = """
+`$#` holds the count of positional parameters. Useful for validation: `if [ $# -eq 0 ]; then echo 'No arguments'; fi`. Contrast with `$@` (all arguments) and `$0` (script name).
+"""
+id = "c10-sa2-arg-count"

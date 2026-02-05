@@ -1,0 +1,159 @@
+# Chapter 3 Quiz: GNOME Desktop
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the PRIMARY keyboard shortcut to open the Activities Overview in GNOME?"
+prompt.distractors = [
+  "Alt+F1 only",
+  "Alt+Tab",
+  "Ctrl+Esc",
+]
+answer.answer = "Super key (Windows key) or Alt+F1"
+context = """
+The Super key (the Windows key on most keyboards) is the primary way to open Activities Overview. This is your central hub for launching applications, switching windows, managing workspaces, and searching. Alt+F1 also works but Super is the standard.
+"""
+id = "c03-q1-super-key"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does GNOME's 'dynamic workspaces' mean compared to fixed virtual desktops?"
+prompt.distractors = [
+  "You can only have one workspace at a time",
+  "Workspaces are automatically deleted when you close all windows",
+  "You must manually create each workspace before using it",
+]
+answer.answer = "Workspaces are created and destroyed automatically as you open and move windows"
+context = """
+GNOME uses dynamic workspaces — new workspaces appear automatically when you drag a window to empty space, and they disappear when all windows are closed. This differs from traditional desktop environments where you have a fixed number of workspaces.
+"""
+id = "c03-q2-dynamic-workspaces"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which of the following is TRUE about GNOME Extensions?"
+prompt.distractors = [
+  "Extensions are built into GNOME by default",
+  "Extensions cannot be removed once installed",
+  "All extensions are guaranteed to be stable",
+]
+answer.answer = "Extensions add functionality but some can cause system instability"
+context = """
+GNOME Extensions are like browser extensions for your desktop. They can add features like docks, tray icons, and blur effects. However, because they hook into GNOME Shell internals, poorly written extensions can cause crashes or instability. Install only what you need.
+"""
+id = "c03-q3-extensions-warning"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What keyboard shortcut tiles a window to the LEFT half of the screen?"
+prompt.distractors = [
+  "Super+Down",
+  "Super+Right",
+  "Alt+Left",
+]
+answer.answer = "Super+Left"
+context = """
+GNOME supports window snapping with keyboard shortcuts: Super+Left tiles to left half, Super+Right tiles to right half, Super+Up maximizes, and Super+Down restores or minimizes. You can also drag windows to screen edges with the mouse.
+"""
+id = "c03-q4-tiling-windows"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Where do you click in GNOME to see your calendar, notifications, and system menu?"
+prompt.distractors = [
+  "Activities button (top-left)",
+  "The Dash (bottom dock)",
+  "Application menu (center of top bar)",
+]
+answer.answer = "Clock in the top-right corner"
+context = """
+Clicking the clock (top-right) opens the calendar, notifications panel, and system menu with settings, power options, and logout. This is your control center for system status and quick actions.
+"""
+id = "c03-q5-clock-menu"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the 'Dash' in GNOME?"
+prompt.distractors = [
+  "The system tray in the top-right corner",
+  "The search bar in Activities Overview",
+  "The window switcher in Activities",
+]
+answer.answer = "The dock at the bottom of the screen with favorite applications"
+context = """
+The Dash is GNOME's application dock at the bottom of the screen. It shows your favorite applications for quick launching and running applications for switching. You can add favorites by right-clicking apps in Activities Overview.
+"""
+id = "c03-q6-dash"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is Flatpak?"
+prompt.distractors = [
+  "A GNOME theme for dark mode",
+  "A terminal emulator",
+  "The GNOME file manager",
+]
+answer.answer = "A containerized package format that works on any Linux distribution"
+context = """
+Flatpak is a universal package format that packages applications with all their dependencies. This means a Flatpak app works the same on Fedora, Debian, Ubuntu, or any other distro. Flathub is the central repository for Flatpak applications.
+"""
+id = "c03-q7-flatpak"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which keyboard shortcut locks the GNOME screen?"
+prompt.distractors = [
+  "Super+K",
+  "Alt+L",
+  "Ctrl+L",
+]
+answer.answer = "Super+L"
+context = """
+Super+L instantly locks your screen, requiring your password to return. This is essential for security when stepping away from your computer, especially for laptops and shared workspaces.
+"""
+id = "c03-q8-lock-screen"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the PRIMARY difference between GNOME and KDE Plasma?"
+prompt.distractors = [
+  "GNOME is free while KDE costs money",
+  "GNOME only works on Fedora, KDE only works on Ubuntu",
+  "GNOME includes a terminal while KDE doesn't",
+]
+answer.answer = "GNOME emphasizes modern minimal design; KDE emphasizes extensive customization"
+context = """
+GNOME follows a 'less is more' philosophy with a clean, consistent interface and fewer options exposed by default. KDE Plasma offers extensive customization options, traditional desktop metaphors, and more settings visible upfront. Both are excellent choices.
+"""
+id = "c03-q9-gnome-vs-kde"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "How do you add an application to your Favorites (Dash) in GNOME?"
+prompt.distractors = [
+  "Drag from the Activities window to the Dash while holding Ctrl",
+  "Right-click the Dash and select 'Add Application'",
+  "Use the Settings → Applications menu",
+]
+answer.answer = "Right-click the app in Activities Overview and select 'Add to Favorites'"
+context = """
+To add favorites: Open Activities Overview → click the grid icon for All Applications → right-click any app → select 'Add to Favorites'. To remove, right-click the app in the Dash and select 'Remove from Favorites'.
+"""
+id = "c03-q10-add-favorites"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What is the keyboard shortcut to switch between open windows in GNOME?"
+answer.answer = "Alt+Tab"
+context = """
+Alt+Tab is the universal window switching shortcut in GNOME. Hold Alt and press Tab to cycle through open windows. Release Alt on the window you want to focus. This works in virtually all desktop environments.
+"""
+id = "c03-sa1-alt-tab"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What is the name of GNOME's graphical application store for installing software?"
+answer.answer = "GNOME Software"
+context = """
+GNOME Software is the GUI application store included with GNOME. It allows you to browse, install, update, and remove applications. It supports both distribution packages (via dnf/apt) and Flatpaks from Flathub.
+"""
+id = "c03-sa2-gnome-software"

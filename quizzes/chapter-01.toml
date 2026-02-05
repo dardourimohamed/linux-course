@@ -1,0 +1,131 @@
+# Chapter 1 Quiz: Introduction & Philosophy
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is Linux technically?"
+prompt.distractors = [
+  "A complete operating system with a graphical interface",
+  "A desktop environment like GNOME or KDE",
+  "A package manager for installing software",
+]
+answer.answer = "A kernel — the core component that manages hardware resources"
+context = """
+Linux is specifically the kernel, which manages hardware resources and enables software to communicate with the CPU, memory, and devices. The complete operating system is called GNU/Linux, which combines the Linux kernel with GNU tools, desktop environments, and package managers.
+"""
+id = "74090260-9c8c-4cd9-ab33-7adf0d824400"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "In the context of free software, what does 'free' primarily refer to?"
+prompt.distractors = [
+  "Zero cost — you never have to pay anything",
+  "Free technical support from the developers",
+  "Free updates for life without subscription fees",
+]
+answer.answer = "Freedom — the liberty to use, study, modify, and share the software"
+context = """
+The Free Software Movement defines four essential freedoms: Freedom 0 (run the program as you wish), Freedom 1 (study and change it), Freedom 2 (redistribute copies), and Freedom 3 (distribute modified versions). Think of it like a recipe you can cook, modify, and share.
+"""
+id = "7065bbff-faa8-45ec-9aca-654b1d4c4a5f"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which Linux distribution is recommended for this course because it has cutting-edge software and excellent GNOME integration?"
+prompt.distractors = [
+  "Debian",
+  "Arch Linux",
+  "Linux Mint",
+]
+answer.answer = "Fedora Workstation"
+context = """
+Fedora Workstation is recommended for this course because it offers the latest software versions, excellent GNOME integration, and is developer-focused. Debian is also covered but is more suited for servers and production environments due to its focus on stability.
+"""
+id = "0e4b4ad4-a199-4aa8-a205-36c6e1baf017"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What percentage of the world's top 500 supercomputers run Linux?"
+prompt.distractors = [
+  "About 50%",
+  "Around 75%",
+  "Less than 25%",
+]
+answer.answer = "100%"
+context = """
+Linux powers ALL of the world's top 500 supercomputers. It also runs 96% of web servers, all Android devices (3+ billion users), most cloud infrastructure (AWS, Google Cloud, Azure), and even the International Space Station computers.
+"""
+id = "48f7bbf7-73e4-4473-b953-050735a89698"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Who created the Linux kernel in 1991, famously calling it 'just a hobby'?"
+prompt.distractors = [
+  "Richard Stallman",
+  "Bill Gates",
+  "Dennis Ritchie",
+]
+answer.answer = "Linus Torvalds"
+context = """
+Linus Torvalds, a young Finnish student, created the Linux kernel in 1991. His famous newsgroup post stated: 'I'm doing a (free) operating system (just a hobby, won't be big and professional like GNU)...' That 'hobby' now powers most of the world's computing infrastructure.
+"""
+id = "3f878540-1a9a-4f45-a96a-0f6752628f05"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the primary difference between the Free Software movement and the Open Source movement?"
+prompt.distractors = [
+  "Free Software is about price, while Open Source is about code quality",
+  "They are completely different philosophies with opposing goals",
+  "Free Software supports Linux, while Open Source supports Windows",
+]
+answer.answer = "Free Software focuses on ethics and user rights, while Open Source focuses on practical benefits and methodology"
+context = """
+Both movements support the same software, but with different emphasis. The Free Software Foundation (FSF) emphasizes ethics — 'It's morally wrong to deny users these freedoms.' The Open Source Initiative (OSI) emphasizes practicality — 'This development method produces better software.'
+"""
+id = "3bb81055-a84a-4cfb-9615-441c61ba5e0c"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which package manager is used by Fedora and Red Hat-based distributions?"
+prompt.distractors = [
+  "apt",
+  "pacman",
+  "zypper",
+]
+answer.answer = "dnf"
+context = """
+dnf (Dandified YUM) is the package manager for Fedora, RHEL, and CentOS. It works with RPM packages. In contrast: apt is used by Debian/Ubuntu, pacman by Arch Linux, and zypper by openSUSE.
+"""
+id = "3337f1f0-21c2-414e-a5fe-084ff133a83a"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Why is Linux considered essential for developers?"
+prompt.distractors = [
+  "It's the only operating system that supports programming languages",
+  "It automatically writes code for you",
+  "It requires no learning curve compared to Windows",
+]
+answer.answer = "It's your production environment — most deployed code runs on Linux"
+context = """
+Linux runs the internet. When you deploy code, it's almost certainly going to Linux. Developing on Linux eliminates environment mismatches ('it works on my machine' problems). Additionally, Linux has native developer tools, powerful terminal capabilities, better resource management, and is the foundation of containerization and cloud technologies.
+"""
+id = "eff9170a-ea0d-46c2-9067-52231f5b0fa9"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "The complete operating system combining the Linux kernel with GNU tools, desktop environments, and package managers is more accurately called what?"
+answer.answer = "GNU/Linux"
+context = """
+The complete operating system is GNU/Linux, named after the combination of the Linux kernel (created by Linus Torvalds) and GNU tools (started by Richard Stallman in 1983).
+"""
+id = "6d1018b9-dde2-41ec-82af-ea1ab63699b0"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What desktop environment does this course use, which is the default on both Fedora and Debian?"
+answer.answer = "GNOME"
+context = """
+This course uses GNOME — it's the default desktop environment on both Fedora and Debian, modern, well-documented, and provides a consistent experience across our recommended distributions.
+"""
+id = "8ffb4d6a-1a73-4e00-9be2-ba329e2092f1"

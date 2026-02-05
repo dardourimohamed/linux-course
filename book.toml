@@ -1,0 +1,28 @@
+[book]
+title = "Linux for Everyone"
+authors = ["Mohamed Dardouri"]
+language = "en"
+description = "A comprehensive Linux course from beginner to intermediate - CLI mastery, system administration, and DevOps introduction"
+src = "src"
+
+[build]
+build-dir = "dist"
+create-missing = false
+
+[preprocessor.quiz]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/mdardouri/linux-course"
+edit-url-template = "edit/main/{path}"
+additional-js = ["js/mermaid.min.js", "js/mermaid-init.js"]
+
+[output.html.search]
+enable = true
+
+[output.html.print]
+enable = true

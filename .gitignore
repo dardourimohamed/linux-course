@@ -1,0 +1,33 @@
+# mdBook build output
+dist/
+book/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node modules
+node_modules/
+npm-debug.log*
+
+# Cargo
+Cargo.lock
+
+# Rust
+target/
+**/*.rs.bk
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
+
+# Ralph agent files
+.ralph/
+
+# mdbook-quiz temporary files
+mdbook-quiz/

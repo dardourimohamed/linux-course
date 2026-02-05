@@ -1,0 +1,159 @@
+# Chapter 2 Quiz: Installation
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the primary difference between dual-booting and running Linux in a Virtual Machine?"
+prompt.distractors = [
+  "Dual-boot uses more RAM than a VM",
+  "VMs require repartitioning your hard drive",
+  "Dual-boot only works with Fedora, while VMs work with any distribution",
+]
+answer.answer = "Dual-boot gives full hardware performance; a VM runs inside your existing OS with isolated resources"
+context = """
+Dual-booting allows Linux to directly access your hardware for maximum performance, but requires disk repartitioning and carries more risk. A VM runs as an application within your host OS, making it safer and easier to delete, but with shared resources and reduced graphics performance.
+"""
+id = "c02-q1-install-method"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the MINIMUM recommended RAM for a comfortable Linux installation?"
+prompt.distractors = [
+  "1 GB",
+  "2 GB",
+  "16 GB",
+]
+answer.answer = "4 GB"
+context = """
+While 2 GB is the absolute minimum for running a basic Linux system, 4 GB is recommended for a comfortable experience. For modern desktops with GNOME, 8 GB or more is ideal for smooth multitasking and running multiple applications.
+"""
+id = "c02-q2-ram-requirement"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which partition type is required for UEFI-based systems to boot?"
+prompt.distractors = [
+  "MBR (Master Boot Record)",
+  "Swap partition",
+  "ext4 partition",
+]
+answer.answer = "EFI System Partition (ESP)"
+context = """
+UEFI systems require an EFI System Partition (typically 512 MB) formatted as FAT32 to store boot loaders. This is distinct from the older BIOS/MBR boot method which used a different approach. Modern systems use UEFI + GPT partitioning.
+"""
+id = "c02-q3-efi-partition"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What command should you run on Windows BEFORE installing Linux dual-boot to prevent disk access issues?"
+prompt.distractors = [
+  "diskpart and format the C: drive",
+  "chkdsk /f to fix disk errors",
+  "defrag C: to optimize the drive",
+]
+answer.answer = "powercfg /hibernate off and disable Fast Startup"
+context = """
+Windows Fast Startup and hibernation can cause issues because they leave the disk in an inconsistent state that Linux can't safely access. Running 'powercfg /hibernate off' and disabling Fast Startup in Power Options ensures both OSes can access the disk safely.
+"""
+id = "c02-q4-windows-prep"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which filesystem is the DEFAULT for modern Fedora installations?"
+prompt.distractors = [
+  "ext4",
+  "xfs",
+  "NTFS",
+]
+answer.answer = "btrfs"
+context = """
+Fedora uses btrfs (B-Tree File System) by default due to its advanced features including snapshots, copy-on-write, and data integrity checking. ext4 is still widely used and is the most traditional choice, while xfs is optimized for large files and servers.
+"""
+id = "c02-q5-filesystem"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the purpose of a Swap partition?"
+prompt.distractors = [
+  "Store system backups and restore points",
+  "Install additional software packages",
+  "Share files between Windows and Linux",
+]
+answer.answer = "Provide virtual memory for hibernation and prevent system crashes when RAM is full"
+context = """
+Swap space acts as an extension of your RAM. When physical memory is exhausted, the system moves inactive pages to swap. For systems that support hibernation, swap should be at least equal to your RAM size. A common recommendation is 4-8 GB for systems with 16+ GB RAM.
+"""
+id = "c02-q6-swap-partition"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the SAFEST option for someone who wants to try Linux without risking their Windows installation?"
+prompt.distractors = [
+  "Dual-boot with automatic partitioning",
+  "Replace Windows entirely with Linux",
+  "Manual partitioning with custom layout",
+]
+answer.answer = "Virtual Machine (VirtualBox, VMware, or GNOME Boxes)"
+context = """
+A Virtual Machine is the safest option because it runs Linux as an application within Windows. The VM has its own virtual disk that cannot affect your host OS. If something goes wrong, you can simply delete the VM and start over without any risk to your Windows installation.
+"""
+id = "c02-q7-safest-option"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which tool is recommended as the CROSS-PLATFORM, EASIEST option for creating a bootable USB drive?"
+prompt.distractors = [
+  "dd command (Linux/Mac only)",
+  "Fedora Media Writer (Fedora only)",
+  "Rufus (Windows only)",
+]
+answer.answer = "BalenaEtcher"
+context = """
+BalenaEtcher is recommended because it works on Windows, macOS, and Linux with a simple graphical interface. While tools like dd, Fedora Media Writer, and Rufus are excellent options, Etcher provides the most accessible cross-platform experience for beginners.
+"""
+id = "c02-q8-etcher"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "If your computer boots directly to Windows without showing the Linux boot menu, what should you check FIRST?"
+prompt.distractors = [
+  "Reinstall Linux completely",
+  "Delete Windows and start over",
+  "Check if the Linux partition is mounted",
+]
+answer.answer = "Check BIOS/UEFI boot order settings"
+context = """
+The most common issue is that the Windows Boot Manager is higher in the boot order than the Linux boot manager (GRUB). Enter BIOS/UEFI setup (F2, Del, F10, or F12 depending on manufacturer) and change the boot order to prioritize Linux boot manager first.
+"""
+id = "c02-q9-boot-order"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the recommended way to shrink a Windows partition to make space for Linux?"
+prompt.distractors = [
+  "Use Linux installer to delete Windows partition",
+  "Format the entire drive from the Linux USB",
+  "Use a third-party partitioning tool outside Windows",
+]
+answer.answer = "Use Windows Disk Management to shrink the C: drive"
+context = """
+The safest way to shrink Windows is to use Windows' built-in Disk Management tool. Right-click the C: drive, select Shrink, and specify the size. This ensures Windows properly adjusts its filesystem. Always backup before any disk operation!
+"""
+id = "c02-q10-shrink-windows"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What key do you typically press during boot to access the boot menu and select your USB drive?"
+answer.answer = "F12"
+context = """
+F12 is the most common boot menu key across Dell, Lenovo, and many other manufacturers. Other options include F10 (HP), F2 or Del (some systems), or Esc. On Mac, hold the Option key.
+"""
+id = "c02-sa1-boot-key"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What is the name of the boot loader that manages dual-boot between Linux and Windows?"
+answer.answer = "GRUB"
+context = """
+GRUB (Grand Unified Boot Loader) is the boot manager used by most Linux distributions. It presents a menu at boot time allowing you to choose between Linux, Windows, or other operating systems. If Windows doesn't appear in GRUB, you may need to run os-prober.
+"""
+id = "c02-sa2-grub"

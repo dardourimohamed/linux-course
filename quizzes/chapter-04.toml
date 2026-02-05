@@ -1,0 +1,159 @@
+# Chapter 4 Quiz: File System & Navigation
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the ROOT of the Linux file system hierarchy?"
+prompt.distractors = [
+  "/home",
+  "/root",
+  "~ (tilde)",
+]
+answer.answer = "/ (single forward slash)"
+context = """
+The Linux file system has a single unified tree starting at `/` (root). This is different from Windows where each drive has its own letter (C:, D:, etc.). Everything in Linux is under this single root directory.
+"""
+id = "c04-q1-root"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the `~` (tilde) symbol represent in a Linux path?"
+prompt.distractors = [
+  "The root directory /",
+  "The parent directory",
+  "The current directory",
+]
+answer.answer = "Your home directory (/home/username)"
+context = """
+The tilde (~) is a shortcut for your home directory. `cd ~` takes you to /home/yourname. This is useful for quickly navigating home without typing the full path. You can also use it in paths like `~/documents/file.txt`.
+"""
+id = "c04-q2-tilde"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What command would you use to create nested directories like `projects/2025/webapp` in one step?"
+prompt.distractors = [
+  "mkdir projects/2025/webapp",
+  "mkdir -r projects/2025/webapp",
+  "mkdir --all projects/2025/webapp",
+]
+answer.answer = "mkdir -p projects/2025/webapp"
+context = """
+The `-p` flag (parents) creates parent directories as needed. Without it, mkdir would fail if the parent directories don't exist. This is essential for creating deep directory structures in one command.
+"""
+id = "c04-q3-mkdir-p"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "How do you list ALL files including hidden ones (files starting with .)?"
+prompt.distractors = [
+  "ls -h",
+  "ls --all",
+  "ls --hidden",
+]
+answer.answer = "ls -a"
+context = """
+Hidden files in Linux start with a dot (.) and are not shown by default. The `-a` flag shows all files including hidden ones like `.bashrc`, `.gitconfig`, etc. The `-h` flag shows human-readable file sizes.
+"""
+id = "c04-q4-ls-a"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between an absolute path and a relative path?"
+prompt.distractors = [
+  "Absolute paths use forward slashes, relative use backslashes",
+  "Absolute paths are longer than relative paths",
+  "Relative paths always start with /home",
+]
+answer.answer = "Absolute paths start from root (/), relative paths start from current directory"
+context = """
+Absolute paths always begin with `/` and specify the complete path from root (e.g., `/home/user/docs/file.txt`). Relative paths start from your current directory (e.g., `../docs/file.txt` or just `file.txt`).
+"""
+id = "c04-q5-paths"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `cd -` (cd followed by a dash) do?"
+prompt.distractors = [
+  "Changes to the root directory",
+  "Changes to your home directory",
+  "Creates a new directory called dash",
+]
+answer.answer = "Changes to the previous directory you were in"
+context = """
+`cd -` is a quick way to toggle between your last two directories. It's like a 'back' button for directory navigation. Very useful when you need to work in two locations alternately.
+"""
+id = "c04-q6-cd-dash"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What command would create 10 empty files named file01.txt through file10.txt?"
+prompt.distractors = [
+  "touch file01.txt file02.txt ... file10.txt",
+  "mkdir file{01..10}.txt",
+  "create file{01..10}.txt",
+]
+answer.answer = "touch file{01..10}.txt"
+context = """
+Brace expansion `{..}` creates sequences. `touch file{01..10}.txt` expands to file01.txt, file02.txt, through file10.txt. This is a powerful shell feature that works with many commands, not just touch.
+"""
+id = "c04-q7-brace-expansion"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which of the following is a hidden file in Linux?"
+prompt.distractors = [
+  "hidden.txt",
+  "backup-file.txt",
+  ".hidden.txt",
+]
+answer.answer = ".hidden.txt (files starting with a dot)"
+context = """
+In Linux, any filename starting with a dot (.) is hidden from normal `ls` output. Use `ls -a` to see them. Hidden files are typically configuration files like `.bashrc`, `.gitignore`, `.env`.
+"""
+id = "c04-q8-hidden-files"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does Tab Completion do in the terminal?"
+prompt.distractors = [
+  "Creates a new tab in the terminal emulator",
+  "Shows all files in the current directory",
+  "Formats the output into columns",
+]
+answer.answer = "Automatically completes commands, filenames, and paths"
+context = """
+Tab completion is a productivity superpower. Start typing a command or filename and press Tab to auto-complete. Press Tab twice to see all possible matches. It prevents typos and saves keystrokes.
+"""
+id = "c04-q9-tab-completion"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is stored in the /etc directory?"
+prompt.distractors = [
+  "User home directories",
+  "Executable programs",
+  "Temporary files",
+]
+answer.answer = "System configuration files"
+context = """
+The /etc directory contains system-wide configuration files. This is where you'll find configs for your network, services, applications, and more. Key files include passwd, fstab, hosts, and many application-specific config files.
+"""
+id = "c04-q10-etc-directory"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command displays your current working directory (where you are right now)?"
+answer.answer = "pwd"
+context = """
+`pwd` stands for 'print working directory'. It shows the full path of your current location in the file system. Useful when you've lost track of where you are or need to copy your current path.
+"""
+id = "c04-sa1-pwd"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What represents the parent directory in a relative path (one level up)?"
+answer.answer = ".."
+context = """
+The double dot `..` represents the parent directory. Used in paths like `../file.txt` (file in parent directory) or `cd ..` to move up one level. The single dot `.` represents the current directory.
+"""
+id = "c04-sa2-parent-dir"

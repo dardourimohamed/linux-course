@@ -1,0 +1,159 @@
+# Chapter 6 Quiz: Text Processing
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `grep -i` do?"
+prompt.distractors = [
+  "Shows line numbers with matches",
+  "Recursively searches directories",
+  "Inverts the match (shows non-matching lines)",
+]
+answer.answer = "Performs case-insensitive searching"
+context = """
+`grep -i` ignores case when matching. `grep -i error` finds 'error', 'Error', 'ERROR', etc. Useful when you're not sure about the capitalization in the text.
+"""
+id = "c06-q1-grep-i"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What would `find . -name '*.txt' -size +1M` find?"
+prompt.distractors = [
+  "All .txt files exactly 1MB in size",
+  "All .txt files modified in the last minute",
+  "All files larger than 1GB",
+]
+answer.answer = "All .txt files larger than 1 megabyte"
+context = """
+`find . -name '*.txt' -size +1M` finds .txt files larger than 1MB. The `+` means 'greater than'. Use `-size -1M` for files smaller than 1MB, or `-size 1M` for exactly 1MB.
+"""
+id = "c06-q2-find-size"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `sed 's/foo/bar/g'` do?"
+prompt.distractors = [
+  "Searches for 'foo' and deletes those lines",
+  "Replaces only the first occurrence of 'foo' with 'bar'",
+  "Sorts lines containing 'foo' or 'bar'",
+]
+answer.answer = "Replaces ALL occurrences of 'foo' with 'bar' in each line"
+context = """
+`sed 's/pattern/replacement/g'` substitutes pattern with replacement globally (the `g` flag). Without `g`, only the first occurrence per line is replaced. `sed -i` modifies files in-place.
+"""
+id = "c06-q3-sed-global"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "In awk, what does `$1` represent?"
+prompt.distractors = [
+  "The first line of the file",
+  "The first file processed",
+  "The total number of fields",
+]
+answer.answer = "The first field in the current line"
+context = """
+In awk, `$1` is the first field (column), `$2` is the second, and `$0` is the entire line. Fields are separated by whitespace by default. Use `-F:` to change the delimiter (like for /etc/passwd).
+"""
+id = "c06-q4-awk-field"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `uniq -c` do?"
+prompt.distractors = [
+  "Shows only unique lines (removes duplicates)",
+  "Counts the total number of lines",
+  "Removes all lines that appear only once",
+]
+answer.answer = "Prefixes each line with the number of occurrences"
+context = """
+`uniq -c` counts consecutive duplicate lines. Input must be sorted first. Example: `sort names.txt | uniq -c` shows how many times each name appears. Useful for frequency analysis.
+"""
+id = "c06-q5-uniq-count"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `grep -v` do?"
+prompt.distractors = [
+  "Shows verbose output with more details",
+  "Searches recursively in subdirectories",
+  "Displays version information",
+]
+answer.answer = "Inverts the match (shows lines that DON'T match)"
+context = """
+`grep -v` shows non-matching lines. Example: `grep -v '^#' config.txt` shows all lines except comments. Great for filtering out unwanted patterns.
+"""
+id = "c06-q6-grep-v"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What would `find . -mtime -7` find?"
+prompt.distractors = [
+  "Files larger than 7MB",
+  "Files modified exactly 7 days ago",
+  "Files with 7 or more hard links",
+]
+answer.answer = "Files modified within the last 7 days"
+context = """
+`find . -mtime -7` finds files modified less than 7 days ago. The `-` means 'less than'. Use `+7` for files older than 7 days, or `7` for exactly 7 days ago.
+"""
+id = "c06-q7-find-mtime"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `sort -n` do?"
+prompt.distractors = [
+  "Sorts in reverse order (descending)",
+  "Sorts numerically instead of lexicographically",
+  "Removes duplicate lines while sorting",
+]
+answer.answer = "Sorts by numeric value rather than treating numbers as text"
+context = """
+Without `-n`, sort treats numbers lexicographically (10 comes before 2). With `sort -n`, numbers are compared by value (2 comes before 10). Essential for sorting numbers correctly.
+"""
+id = "c06-q8-sort-numeric"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `awk -F: '{print $1}' /etc/passwd` do?"
+prompt.distractors = [
+  "Prints the first line of /etc/passwd",
+  "Prints all usernames from /etc/passwd",
+  "Counts the number of users in /etc/passwd",
+]
+answer.answer = "Prints the first colon-delimited field from each line"
+context = """
+`awk -F:` sets the field separator to colon. This is perfect for /etc/passwd where fields are colon-separated. `$1` is the username field. This command lists all system users.
+"""
+id = "c06-q9-awk-passwd"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `grep -E 'error|warning'` do?"
+prompt.distractors = [
+  "Searches for the literal text 'error|warning'",
+  "Shows lines containing both 'error' AND 'warning'",
+  "Excludes lines containing 'error' or 'warning'",
+]
+answer.answer = "Finds lines matching 'error' OR 'warning' (extended regex)"
+context = """
+`grep -E` enables extended regular expressions. The `|` is the OR operator. This matches lines containing either 'error' or 'warning'. Without `-E`, you'd need to escape: `grep 'error\\|warning'`.
+"""
+id = "c06-q10-grep-extended"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command counts lines, words, and characters in a file?"
+answer.answer = "wc"
+context = """
+`wc` (word count) shows line count (`wc -l`), word count (`wc -w`), and character count (`wc -c`). Example: `wc -l file.txt` counts the number of lines.
+"""
+id = "c06-sa1-wc"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What awk variable represents the total number of fields in the current line?"
+answer.answer = "$NF"
+context = """
+`$NF` is the last field (Number of Fields). This is useful regardless of how many fields a line has. If a line has 5 fields, `$NF` equals `$5`. If it has 10 fields, `$NF` equals `$10`.
+"""
+id = "c06-sa2-nf"

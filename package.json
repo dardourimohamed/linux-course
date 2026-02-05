@@ -1,0 +1,21 @@
+{
+  "name": "linux-course",
+  "version": "1.0.0",
+  "description": "A comprehensive Linux course from beginner to intermediate - CLI mastery, system administration, and DevOps introduction",
+  "private": true,
+  "scripts": {
+    "build": "mdbook build",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=linux-course --branch=main"
+  },
+  "devDependencies": {
+    "wrangler": "^4.63.0"
+  },
+  "keywords": [
+    "linux",
+    "course",
+    "tutorial",
+    "devops"
+  ],
+  "author": "Mohamed Dardouri",
+  "license": "MIT"
+}

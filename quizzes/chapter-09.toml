@@ -1,0 +1,159 @@
+# Chapter 9 Quiz: Processes & Services
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `kill` and `kill -9`?"
+prompt.distractors = [
+  "kill kills one process, kill -9 kills nine processes",
+  "kill is for user processes, kill -9 is for root processes",
+  "There is no difference - they do the same thing",
+]
+answer.answer = "kill sends SIGTERM (graceful); kill -9 sends SIGKILL (force terminate)"
+context = """
+`kill` (or `kill -15`) sends SIGTERM, allowing the process to clean up and exit gracefully. `kill -9` sends SIGKILL, which immediately terminates the process with no cleanup. Use SIGTERM first; SIGKILL as a last resort.
+"""
+id = "c09-q1-kill-vs-kill9"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `systemctl enable service` do?"
+prompt.distractors = [
+  "Starts the service immediately",
+  "Installs the service if not present",
+  "Stops and disables the service",
+]
+answer.answer = "Makes the service start automatically at boot"
+context = """
+`systemctl enable` configures a service to start automatically on system boot. `systemctl start` starts it immediately. You typically use both: `enable` for persistence, `start` to run it now without rebooting.
+"""
+id = "c09-q2-systemctl-enable"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the `-f` flag do in `journalctl -f`?"
+prompt.distractors = [
+  "Filters out non-error messages",
+  "Formats output as JSON",
+  "Shows only the first 100 lines",
+]
+answer.answer = "Follows logs in real-time (like tail -f for logs)"
+context = """
+`journalctl -f` follows logs, showing new entries as they're generated. This is like `tail -f` for systemd journals. Essential for monitoring services or debugging issues in real-time.
+"""
+id = "c09-q3-journalctl-f"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `ps aux | sort -rk 3` show?"
+prompt.distractors = [
+  "Processes sorted by memory usage",
+  "Processes sorted by PID",
+  "All processes in alphabetical order",
+]
+answer.answer = "Processes sorted by CPU usage (highest first)"
+context = """
+In `ps aux`, column 3 is %CPU. The `sort -rk 3` reverses sorts by column 3 (CPU), showing the highest CPU processes first. For memory, use column 4 (`sort -rk 4`).
+"""
+id = "c09-q4-sort-cpu"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between running a command with `&` at the end and using `nohup`?"
+prompt.distractors = [
+  "& runs it as root, nohup runs it as user",
+  "nohup runs it faster than &",
+  "There is no difference in functionality",
+]
+answer.answer = "& backgrounds but dies on logout; nohup keeps running after logout"
+context = """
+Appending `&` runs a command in the background, but it will still terminate when you log out. `nohup` (no hangup) makes the process immune to hangup signals, keeping it alive after you close the terminal. Combine both: `nohup command &`
+"""
+id = "c09-q5-amp-vs-nohup"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `pkill firefox` do?"
+prompt.distractors = [
+  "Lists all Firefox processes",
+  "Starts Firefox with high priority",
+  "Shows Firefox process details",
+]
+answer.answer = "Terminates all processes whose name matches 'firefox'"
+context = """
+`pkill pattern` kills all processes matching the name pattern. It's more convenient than finding PIDs with `ps` then running `kill`. `killall` does similar but requires exact name match.
+"""
+id = "c09-q6-pkill"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What command shows real-time interactive process monitoring?"
+prompt.distractors = [
+  "ps aux",
+  "ps -ef",
+  "killall",
+]
+answer.answer = "top"
+context = """
+`top` (or `htop` if installed) shows real-time process monitoring with CPU, memory, and other stats. It updates continuously. `ps` shows a snapshot at one moment in time.
+"""
+id = "c09-q7-top"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `journalctl -u sshd` show?"
+prompt.distractors = [
+  "All system logs from the last boot",
+  "Kernel messages only",
+  "Logs from all user accounts",
+]
+answer.answer = "Logs specifically for the sshd service"
+context = """
+`journalctl -u service` shows logs for a specific systemd service. This is useful for debugging specific services. Combine with `-f` to follow logs: `journalctl -fu sshd`.
+"""
+id = "c09-q8-journalctl-u"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the `bg` command do?"
+prompt.distractors = [
+  "Runs a command in the background from the start",
+  "Kills the current background job",
+  "Lists all background processes",
+]
+answer.answer = "Resumes a suspended job in the background"
+context = """
+When you press Ctrl+Z, it suspends (pauses) the current foreground job. `bg` resumes it in the background. Use `jobs` to list background jobs and `fg %N` to bring job N back to foreground.
+"""
+id = "c09-q9-bg"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `systemctl is-enabled sshd` check?"
+prompt.distractors = [
+  "Whether sshd is currently running",
+  "Whether sshd is installed",
+  "Whether sshd has any errors",
+]
+answer.answer = "Whether sshd will start automatically at boot"
+context = """
+`systemctl is-enabled` checks if a service is enabled for auto-start at boot. `systemctl is-active` checks if it's currently running. `systemctl status` shows both and more.
+"""
+id = "c09-q10-is-enabled"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command displays current memory usage in human-readable format?"
+answer.answer = "free -h"
+context = """
+`free -h` shows memory usage in human-readable format (GB, MB instead of bytes). Use `free -h` to see total, used, free, and cached memory. This is essential for monitoring system resources.
+"""
+id = "c09-sa1-free-h"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command brings a background job to the foreground?"
+answer.answer = "fg"
+context = """
+`fg` brings the most recent background job to foreground. `fg %1` brings job number 1 to foreground. Use `jobs` to see background job numbers. This is how you resume control of backgrounded processes.
+"""
+id = "c09-sa2-fg"

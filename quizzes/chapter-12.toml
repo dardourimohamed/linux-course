@@ -1,0 +1,159 @@
+# Chapter 12 Quiz: Git Version Control
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the THREE-STATE workflow in Git?"
+prompt.distractors = [
+  "Add, commit, push",
+  "Branch, merge, pull",
+  "Clone, fetch, checkout",
+]
+answer.answer = "Working directory → Staging area → Repository"
+context = """
+Git's three states: (1) Working directory where you modify files, (2) Staging area (index) where you prepare files with `git add`, (3) Repository where committed changes are stored with `git commit`. This staged commit design is Git's unique feature.
+"""
+id = "c12-q1-three-states"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `git diff` and `git diff --staged`?"
+prompt.distractors = [
+  "diff shows the last commit, --staged shows all commits",
+  "diff is for text files, --staged is for binary files",
+  "There is no difference between them",
+]
+answer.answer = "diff shows unstaged changes; --staged shows changes ready to commit"
+context = """
+`git diff` shows changes in the working directory that aren't staged. `git diff --staged` (or `--cached`) shows changes that have been added to the staging area and will be included in the next commit.
+"""
+id = "c12-q2-diff-staged"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `git checkout -b feature-branch` do?"
+prompt.distractors = [
+  "Deletes the feature-branch",
+  "Merges feature-branch into current branch",
+  "Renames the current branch to feature-branch",
+]
+answer.answer = "Creates and switches to a new branch called feature-branch"
+context = """
+`git checkout -b branchname` is a shortcut that creates a new branch and immediately switches to it. It's equivalent to `git branch branchname` followed by `git checkout branchname`.
+"""
+id = "c12-q3-checkout-b"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between a fast-forward merge and a recursive merge?"
+prompt.distractors = [
+  "Fast-forward is for text files, recursive for binary",
+  "Fast-forward creates a merge commit, recursive doesn't",
+  "Fast-forward is slower than recursive",
+]
+answer.answer = "Fast-forward moves the branch pointer; recursive creates a merge commit"
+context = """
+Fast-forward merge happens when the branch being merged is directly ahead — Git just moves the pointer. Recursive merge happens when branches have diverged — Git creates a new merge commit combining both histories.
+"""
+id = "c12-q4-merge-types"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What do the conflict markers `<<<<<<<`, `=======`, `>>>>>>>` indicate?"
+prompt.distractors = [
+  "Comments in the code explaining what changed",
+  "Git's automatic merge completion message",
+  "Markers indicating a successful merge",
+]
+answer.answer = "Git couldn't automatically merge — manual resolution needed"
+context = """
+When Git can't automatically merge conflicting changes, it marks the conflicted sections. `<<<<<<< HEAD` shows your changes, `=======` separates, `>>>>>>> branch` shows incoming changes. You must manually edit, then `git add` to resolve.
+"""
+id = "c12-q5-conflict-markers"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the PRIMARY purpose of `.gitignore`?"
+prompt.distractors = [
+  "To ignore merge conflicts",
+  "To prevent commits without a message",
+  "To hide sensitive files from the git history",
+]
+answer.answer = "To specify files that Git should NOT track"
+context = """
+`.gitignore` tells Git which files/directories to ignore — build artifacts, dependencies, local config, IDE files. Already-tracked files aren't affected; `git rm --cached` is needed to untrack them.
+"""
+id = "c12-q6-gitignore"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `git pull` actually do?"
+prompt.distractors = [
+  "Just downloads remote changes without modifying your branch",
+  "Uploads your local commits to the remote",
+  "Deletes the remote branch",
+]
+answer.answer = "Fetches remote changes AND merges them into your branch"
+context = """
+`git pull` is `git fetch` followed by `git merge`. It downloads remote changes and immediately merges them into your current branch. Use `git pull --rebase` to rebase instead of merge.
+"""
+id = "c12-q7-pull"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is a good commit message format?"
+prompt.distractors = [
+  "Start with a noun, use lowercase, be vague",
+  "Write a novel explaining every detail in the subject line",
+  "Use passive voice and future tense",
+]
+answer.answer = "Verb-first, present tense, under 50 characters on first line"
+context = """
+Good commit: 'Add user authentication feature'. Bad: 'added stuff' or 'Fixed things'. Use imperative mood ('Add' not 'Added'). Keep subject line under 50 chars, add blank line, then detailed explanation if needed.
+"""
+id = "c12-q8-commit-message"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `HEAD` refer to in Git?"
+prompt.distractors = [
+  "The first commit in the repository",
+  "The main branch name",
+  "The remote repository",
+]
+answer.answer = "A pointer to the currently checked-out commit/branch"
+context = """
+HEAD is a symbolic reference pointing to whatever commit you're currently on. When on a branch, HEAD points to that branch's tip. `HEAD~1` refers to the commit before HEAD, `HEAD~2` two commits back, etc.
+"""
+id = "c12-q9-head"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `git clone` and `git init`?"
+prompt.distractors = [
+  "clone creates local repo, init connects to remote",
+  "There is no difference - they do the same thing",
+  "init is for deleting repositories",
+]
+answer.answer = "clone copies existing repo; init creates new empty repo"
+context = """
+`git init` creates a new empty repository in the current directory. `git clone url` copies an existing remote repository (including all history) to your local machine. Use init for new projects, clone for existing ones.
+"""
+id = "c12-q10-clone-vs-init"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command stages files for commit?"
+answer.answer = "git add"
+context = """
+`git add file` stages a specific file. `git add .` stages all changes in current directory. `git add -A` stages all changes including deletions. Staging moves changes from working directory to the staging area.
+"""
+id = "c12-sa1-git-add"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command shows commit history in a compact single-line format?"
+answer.answer = "git log --oneline"
+context = """
+`git log --oneline` shows each commit on one line with short hash and subject. Much more readable than full log format. Other useful options: `--graph` (visual branching), `--all` (all branches), `--decorate` (branch tags).
+"""
+id = "c12-sa2-log-oneline"

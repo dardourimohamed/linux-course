@@ -1,0 +1,159 @@
+# Chapter 11 Quiz: Networking Basics
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `ping host` test?"
+prompt.distractors = [
+  "If a specific port is open on the host",
+  "If the DNS can resolve the hostname",
+  "If HTTP is working on the host",
+]
+answer.answer = "If the host is reachable and responding"
+context = """
+`ping` sends ICMP echo requests to test basic network connectivity. It tells you if a host is up and responding, but not about specific services or ports. Use `ping -c 4` for a specific count instead of continuous pinging.
+"""
+id = "c11-q1-ping"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the PRIMARY security advantage of SSH key authentication over passwords?"
+prompt.distractors = [
+  "Keys are shorter and easier to remember",
+  "Keys don't require encryption",
+  "Keys work without network connection",
+]
+answer.answer = "Keys are much harder to brute force than passwords"
+context = """
+SSH keys use asymmetric cryptography with much larger key spaces than passwords. A 256-character password is still weaker than ed25519 keys. Keys also resist replay attacks and can be revoked without changing other credentials.
+"""
+id = "c11-q2-ssh-keys"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `ssh-copy-id user@host` do?"
+prompt.distractors = [
+  "Creates a new SSH key pair",
+  "Copies files from remote to local",
+  "Tests SSH connection",
+]
+answer.answer = "Copies your public key to the remote host's authorized_keys"
+context = """
+`ssh-copy-id` automates the process of adding your public key to `~/.ssh/authorized_keys` on the remote server. This enables key-based authentication without manual file editing.
+"""
+id = "c11-q3-ssh-copy-id"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `scp` and `rsync`?"
+prompt.distractors = [
+  "scp is encrypted, rsync is not",
+  "scp only works locally, rsync works remotely",
+  "rsync cannot copy directories",
+]
+answer.answer = "rsync can transfer only changed files and resume interrupted transfers"
+context = """
+`scp` is simpler but copies everything. `rsync` compares source and destination, transferring only differences. It can resume, preserve permissions/timestamps, compress during transfer, and delete files in destination that aren't in source (with --delete).
+"""
+id = "c11-q4-scp-vs-rsync"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the `-P` flag do in `scp -P 2222 file host:/path/`?"
+prompt.distractors = [
+  "Preserves file permissions and timestamps",
+  "Shows progress bar during transfer",
+  "Limits transfer speed",
+]
+answer.answer = "Specifies a custom SSH port (note capital P)"
+context = """
+`scp -P` (capital P) sets the port number. Note: `rsync` uses lowercase `-p` for permissions and `-e 'ssh -p 2222'` for port. The capital P in scp is a common point of confusion.
+"""
+id = "c11-q5-scp-port"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `ip addr show` display?"
+prompt.distractors = [
+  "Only loopback addresses",
+  "Routing table information",
+  "DNS server addresses",
+]
+answer.answer = "All network interfaces and their IP addresses"
+context = """
+`ip addr show` (or just `ip addr` or `ip a`) displays all network interfaces (lo, eth0, wlan0, etc.) with their IPv4/IPv6 addresses, MAC addresses, and status (UP/DOWN). This replaces the deprecated `ifconfig` command.
+"""
+id = "c11-q6-ip-addr"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `ss -tulpn` show?"
+prompt.distractors = [
+  "Network transfer speeds",
+  "All network interfaces",
+  "Wireless networks in range",
+]
+answer.answer = "All listening TCP and UDP ports with processes"
+context = """
+`ss -tulpn` shows listening sockets: `-t` (TCP), `-u` (UDP), `-l` (listening only), `-p` (show process), `-n` (numeric, don't resolve names). Essential for finding what's listening on a port. Replaces deprecated `netstat`.
+"""
+id = "c11-q7-ss-tulpn"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the purpose of `nc -zv host port`?"
+prompt.distractors = [
+  "Download a file from host via netcat",
+  "Open a chat connection to the host",
+  "Trace the route to the host",
+]
+answer.answer = "Test if a specific port on a host is open and accessible"
+context = """
+`nc -zv` (netcat) scans ports: `-z` (zero I/O mode, scan only), `-v` (verbose). Useful for checking if a service is listening and firewall is allowing traffic before attempting to connect.
+"""
+id = "c11-q8-nc-port-test"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `traceroute host` show?"
+prompt.distractors = [
+  "Only the final destination's IP address",
+  "The ping time to the host",
+  "All DNS records for the host",
+]
+answer.answer = "The path (hops) packets take to reach the host"
+context = """
+`traceroute` shows each router (hop) between you and the destination, with timing for each hop. Useful for diagnosing where network latency or failures occur. Each line shows a hop in the path.
+"""
+id = "c11-q9-traceroute"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `ssh user@host 'command'` do?"
+prompt.distractors = [
+  "Opens an interactive shell on the remote host",
+  "Copies a command to the remote host",
+  "Shows the manual for SSH",
+]
+answer.answer = "Executes a single command on the remote host without opening an interactive shell"
+context = """
+Quoting a command after SSH executes it non-interactively and returns the output. Great for automation: `ssh server 'backup.sh'` or `ssh server 'cat /var/log/syslog | grep error'`.
+"""
+id = "c11-q10-ssh-remote-cmd"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command generates a new SSH key pair?"
+answer.answer = "ssh-keygen"
+context = """
+`ssh-keygen` creates an SSH key pair. Use `ssh-keygen -t ed25519` for modern, secure keys or `ssh-keygen -t rsa -b 4096` for RSA keys. Keys are stored in `~/.ssh/` (id_ed25519 private, id_ed25519.pub public).
+"""
+id = "c11-sa1-ssh-keygen"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What rsync flag shows a preview of changes without actually making them?"
+answer.answer = "--dry-run"
+context = """
+`rsync --dry-run` (or `-n`) shows what WOULD be transferred without actually doing it. Combine with `-v` (verbose) to see the file list. Essential for verifying your rsync command before running it for real.
+"""
+id = "c11-sa2-dry-run"

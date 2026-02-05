@@ -1,0 +1,159 @@
+# Chapter 8 Quiz: Package Management
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the KEY difference between DNF and APT package managers?"
+prompt.distractors = [
+  "DNF is for Debian, APT is for Fedora",
+  "APT requires manual dependency resolution, DNF doesn't",
+  "DNF only installs updates, APT installs anything",
+]
+answer.answer = "DNF auto-refreshes repos; APT requires 'apt update' before installing"
+context = """
+The most important practical difference: APT requires running `sudo apt update` to refresh package lists before installations. DNF refreshes repositories automatically when needed. Both handle dependencies automatically.
+"""
+id = "c08-q1-dnf-vs-apt"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `apt remove` and `apt purge`?"
+prompt.distractors = [
+  "remove deletes the package, purge keeps it",
+  "remove requires sudo, purge doesn't",
+  "purge works only on Debian, remove works on Ubuntu",
+]
+answer.answer = "remove keeps config files; purge deletes config files too"
+context = """
+`apt remove` uninstalls the package but preserves configuration files in `/etc`. `apt purge` removes the package AND deletes its configuration files. Use purge for complete removal, remove to preserve settings for reinstallation.
+"""
+id = "c08-q2-remove-vs-purge"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `dnf provides filename` do?"
+prompt.distractors = [
+  "Shows files provided by an installed package",
+  "Lists all packages that depend on a file",
+  "Downloads a specific file to your system",
+]
+answer.answer = "Finds which package contains a specific file"
+context = """
+`dnf provides filename` (or `dnf whatprovides`) searches for which package provides a specific file. Essential when you know a command name but not the package name. Example: `dnf provides ifconfig` finds the net-tools package.
+"""
+id = "c08-q3-dnf-provides"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Why might you choose Flatpak over distribution packages?"
+prompt.distractors = [
+  "Flatpaks are always more secure",
+  "Flatpaks have better performance",
+  "Flatpaks are the only way to install GUI apps",
+]
+answer.answer = "Flatpaks provide the same version across all distributions"
+context = """
+Flatpak packages apps with all dependencies, ensuring consistent versions across distros. This is useful for getting newer app versions than what's in stable repos, or when an app isn't available for your distribution.
+"""
+id = "c08-q4-flatpak-benefit"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `sudo dnf autoremove` do?"
+prompt.distractors = [
+  "Removes all packages from your system",
+  "Removes the DNF package manager",
+  "Removes packages you manually installed",
+]
+answer.answer = "Removes orphaned packages that were installed as dependencies"
+context = """
+When you install package A which depends on B, then later remove A, B becomes an orphan (no package needs it). `dnf autoremove` cleans up these unused dependency packages, freeing disk space.
+"""
+id = "c08-q5-autoremove"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the correct APT command sequence for updating your system?"
+prompt.distractors = [
+  "apt upgrade; apt update",
+  "apt update; apt full-upgrade",
+  "apt full-upgrade (update happens automatically)",
+]
+answer.answer = "sudo apt update; then sudo apt upgrade"
+context = """
+On Debian-based systems, ALWAYS run `sudo apt update` first to refresh package lists. THEN run `sudo apt upgrade` or `sudo apt full-upgrade`. The update step is NOT automatic and is a common source of errors.
+"""
+id = "c08-q6-apt-update-first"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What command searches for available packages in DNF?"
+prompt.distractors = [
+  "dnf find query",
+  "dnf list query",
+  "dnf query",
+]
+answer.answer = "dnf search query"
+context = """
+`dnf search query` searches package names and descriptions for matching packages. `dnf info package` shows detailed information about a specific package once you've found it.
+"""
+id = "c08-q7-dnf-search"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `sudo dnf clean all` do?"
+prompt.distractors = [
+  "Uninstalls all packages",
+  "Removes all configuration files",
+  "Deletes all user data in /home",
+]
+answer.answer = "Removes cached package files to free disk space"
+context = """
+DNF caches downloaded package files in `/var/cache/dnf`. `dnf clean all` removes these cached files, freeing disk space. The packages will be re-downloaded if needed again. Useful for recovering disk space.
+"""
+id = "c08-q8-clean-all"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Why do package names differ between Fedora and Debian (e.g., python3-devel vs python3-dev)?"
+prompt.distractors = [
+  "One is 64-bit, the other is 32-bit",
+  "Debian uses shorter names to save space",
+  "Fedora follows Red Hat naming, Debian follows Ubuntu",
+]
+answer.answer = "Each distribution has its own naming conventions"
+context = """
+Package naming is distribution-specific. Fedora/RHEL use `-devel` for development packages, Debian/Ubuntu use `-dev`. Python packages might be `python3-` on Fedora, `python3-` on Debian, or even `python3.X-` for specific versions.
+"""
+id = "c08-q9-naming-conventions"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is a repository (repo) in the context of package management?"
+prompt.distractors = [
+  "A folder where you download source code",
+  "A backup of all installed packages",
+  "Your local package cache",
+]
+answer.answer = "A collection of software packages hosted on a server"
+context = """
+A repository is a server hosting packaged software. Your package manager downloads from these repos. Distributions have official repos (maintained by the distro) and you can add third-party repos for additional software.
+"""
+id = "c08-q10-repo-definition"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "On Debian/Ubuntu, what command refreshes the package list before installing?"
+answer.answer = "apt update"
+context = """
+`sudo apt update` downloads the latest package lists from repositories. This is essential before installing or upgrading on APT-based systems. Without it, you'll be installing outdated package versions.
+"""
+id = "c08-sa1-apt-update"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What DNF command upgrades all installed packages to their latest versions?"
+answer.answer = "dnf upgrade"
+context = """
+`sudo dnf upgrade` updates all installed packages to their latest available versions. On newer Fedora versions, `dnf upgrade` is an alias for `dnf distro-sync`, which handles more complex upgrade scenarios.
+"""
+id = "c08-sa2-dnf-upgrade"

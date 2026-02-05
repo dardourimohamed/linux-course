@@ -1,0 +1,159 @@
+# Chapter 5 Quiz: CLI Fundamentals
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the primary difference between `cat` and `less`?"
+prompt.distractors = [
+  "cat is for creating files, less is for viewing them",
+  "cat shows only the first 10 lines, less shows all",
+  "less requires sudo to use",
+]
+answer.answer = "cat displays entire file at once; less allows scrolling and searching"
+context = """
+`cat` dumps the entire file contents to stdout immediately. For large files, this scrolls past too quickly. `less` is a pager that lets you scroll, search with `/pattern`, and navigate. Use `cat` for small files, `less` for large ones.
+"""
+id = "c05-q1-cat-vs-less"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the pipe operator (`|`) do?"
+prompt.distractors = [
+  "It comments out the rest of the line",
+  "It redirects output to a file",
+  "It runs commands in parallel",
+]
+answer.answer = "It passes the output of one command as input to another"
+context = """
+The pipe `|` connects commands, sending stdout of the left command to stdin of the right. Example: `ls -l | grep txt` searches directory listing for 'txt'. This enables powerful command chains.
+"""
+id = "c05-q2-pipe"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What is the difference between `>` and `>>` for redirection?"
+prompt.distractors = [
+  "`>` writes to stdout, `>>` writes to stderr",
+  "`>` is for input, `>>` is for output",
+  "`>` appends, `>>` overwrites",
+]
+answer.answer = "`>` overwrites the file; `>>` appends to the file"
+context = """
+`>` redirects output to a file, replacing existing contents. `>>` appends to the end, preserving existing content. Use `>` for creating new files, `>>` for adding to logs or accumulating output.
+"""
+id = "c05-q3-redirection"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "Which wildcard matches exactly ONE character?"
+prompt.distractors = [
+  "* (asterisk)",
+  "** (double asterisk)",
+  "[] (brackets)",
+]
+answer.answer = "? (question mark)"
+context = """
+The `?` matches exactly one character. `file?.txt` matches 'file1.txt' but not 'file10.txt'. The `*` matches any number of characters (including zero).
+"""
+id = "c05-q4-wildcard-question"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `cp -p` do compared to plain `cp`?"
+prompt.distractors = [
+  "Shows progress while copying",
+  "Creates parent directories if needed",
+  "Copies only if the target is newer",
+]
+answer.answer = "Preserves file attributes (permissions, timestamps, ownership)"
+context = """
+`cp -p` preserves the original file's mode (permissions), ownership, timestamps, and other attributes. Useful when backing up files where maintaining metadata matters.
+"""
+id = "c05-q5-cp-preserve"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the `&&` operator do between commands?"
+prompt.distractors = [
+  "Runs commands in parallel",
+  "Runs the second command regardless of the first",
+  "Runs commands in reverse order",
+]
+answer.answer = "Runs the second command ONLY if the first succeeds"
+context = """
+`&&` is logical AND. The right command runs only if the left command exits with success (exit code 0). Example: `mkdir newdir && cd newdir` only changes into the directory if creation succeeded.
+"""
+id = "c05-q6-and-operator"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does the `||` operator do between commands?"
+prompt.distractors = [
+  "Pipes both commands to a file",
+  "Runs both commands simultaneously",
+  "Runs the second command only if the first also succeeds",
+]
+answer.answer = "Runs the second command ONLY if the first fails"
+context = """
+`||` is logical OR. The right command runs only if the left command fails (non-zero exit code). Example: `mkdir dir || echo 'Failed to create'` reports failure. Useful for error handling.
+"""
+id = "c05-q7-or-operator"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "How would you copy an entire directory recursively?"
+prompt.distractors = [
+  "cp -a directory/ target/",
+  "cp directory/ target/",
+  "cp --all directory/ target/",
+]
+answer.answer = "cp -r directory/ target/"
+context = """
+`cp -r` (recursive) copies directories and all their contents. Without `-r`, cp skips directories. The `-a` (archive) flag is even better as it preserves attributes and copies recursively.
+"""
+id = "c05-q8-cp-recursive"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `tail -f logfile.txt` do?"
+prompt.distractors = [
+  "Shows the first 10 lines of the file",
+  "Fixes corrupted log files",
+  "Formats the log file for display",
+]
+answer.answer = "Shows the last lines and follows new additions in real-time"
+context = """
+`tail -f` (follow) displays the last lines of a file and continues watching for new lines, displaying them as they're added. Essential for monitoring logs in real-time.
+"""
+id = "c05-q9-tail-follow"
+
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = "What does `[0-9]` match in a wildcard pattern?"
+prompt.distractors = [
+  "Files named 0-9 literally",
+  "Any single digit from 0 to 9",
+  "Files with 9 or more characters",
+]
+answer.answer = "Any single digit character"
+context = """
+Character classes `[]` match any single character within the brackets. `[0-9]` matches one digit. `[a-z]` matches one lowercase letter. `[abc]` matches 'a', 'b', or 'c'.
+"""
+id = "c05-q10-character-class"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What command displays the manual (documentation) for another command?"
+answer.answer = "man"
+context = """
+`man` shows manual pages for commands. For example, `man ls` displays the ls documentation. Use `man man` to learn about man itself. Press `q` to quit, `/` to search.
+"""
+id = "c05-sa1-man"
+
+[[questions]]
+type = "ShortAnswer"
+prompt.prompt = "What redirects BOTH stdout and stderr to the same file?"
+answer.answer = "&>"
+context = """
+`&>` redirects both standard output and standard error to a file. For example, `command &> output.txt` captures all output regardless of which stream it uses. This is bash syntax; `command > file.txt 2>&1` is the POSIX equivalent.
+"""
+id = "c05-sa2-redirect-both"
