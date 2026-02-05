@@ -96,4 +96,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Author
 
-Mohamed Dardouri - [GitHub](https://github.com/mdardouri)
+Mohamed Dardouri
+
+- [Website](https://med.dardouri.com) | [Contact](https://med.dardouri.com/contact) | [GitHub](https://github.com/mdardouri)
